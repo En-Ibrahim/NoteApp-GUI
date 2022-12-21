@@ -31,8 +31,6 @@ public class FileManage  {
     }
 
     public void createUser(){
-        getUser().getName();
-        getUser().getPassword();
         try{
             File path= new File("Notes");
             path.mkdirs();

@@ -20,6 +20,9 @@ public class Controll {
     private final String LOGIN = "Login.fxml";
     private final String NOTE = "Note.fxml";
     private FileManage manage = new FileManage();
+    private Parent root;
+    private Stage stage;
+    private Scene scene;
 
     //user
     @FXML
@@ -42,9 +45,7 @@ public class Controll {
 
 
     private void pageSCene(String pageScene, ActionEvent event) throws IOException {
-         Parent root;
-         Stage stage;
-         Scene scene;
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource(pageScene));
         root = loader.load();
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

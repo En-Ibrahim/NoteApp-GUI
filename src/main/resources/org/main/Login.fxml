@@ -13,7 +13,7 @@
       <PasswordField fx:id="textPassword" layoutX="166.0" layoutY="233.0" />
 
       <Button fx:id="login" layoutX="227.0" layoutY="308.0" mnemonicParsing="false" onAction="#login" text="Login" />
-      <Button fx:id="CreateUser" layoutX="194.0" layoutY="395.0" mnemonicParsing="false" onAction="#creator" text="Create  account" />
+      <Button fx:id="CreateUser" layoutX="194.0" layoutY="395.0" mnemonicParsing="false" onAction="#creator" text="Create  Account" />
 
       <Label layoutX="47.0" layoutY="139.0" text="User Name">
          <font>
