@@ -5,3 +5,7 @@ This app creates a user and login After creating the app or logging in, you will
 
 When you click save, the note will be saved in a notes folder In the notes folder users and notes are created for each, you will see a file "details.txt", it is stored in the username and password
 
+Language and tools used
+java
+JavaFx
+files
