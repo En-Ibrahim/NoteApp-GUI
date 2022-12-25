@@ -6,8 +6,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import org.models.FileManage;
 import org.models.Note;
@@ -19,10 +21,8 @@ public class Controll {
     private final String CREATION = "Creation.fxml";
     private final String LOGIN = "Login.fxml";
     private final String NOTE = "Note.fxml";
+    private final String MANAGE="Manage.fxml";
     private FileManage manage = new FileManage();
-    private Parent root;
-    private Stage stage;
-    private Scene scene;
 
     //user
     @FXML
@@ -42,14 +42,17 @@ public class Controll {
     private TextField textUser;
     @FXML
     private TextField textPassword;
+    @FXML
+    private Label myLabel;
 
 
-    private void pageSCene(String pageScene, ActionEvent event) throws IOException {
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(pageScene));
-        root = loader.load();
+    public void pageSCene(String pageScene, ActionEvent event) throws IOException {
+         Parent root;
+         Stage stage;
+         Scene scene;
+        Pane loader =  FXMLLoader.load(getClass().getResource(pageScene));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
+        scene = new Scene(loader);
         stage.setScene(scene);
         stage.show();
     }
@@ -57,11 +60,16 @@ public class Controll {
 
     public void login(ActionEvent event) throws IOException {
         manage.setUser(textUser.getText(), textPassword.getText());
+        try{
         if (manage.checkPass(manage.getUser().getName(), manage.getUser().getPassword()) == true) {
             activeUser(textUser.getText());
-            pageSCene(NOTE, event);
+            pageSCene(MANAGE, event);
         } else {
             pageSCene(LOGIN, event);
+
+        }
+        }catch (IOException e){
+            System.out.println(e);
         }
     }
 
@@ -82,7 +90,7 @@ public class Controll {
         pageSCene(NOTE, event);
     }
 
-    private void activeUser(String user) throws IOException {
+    public void activeUser(String user) throws IOException {
         try {
 
             File path = new File("Notes\\active.txt");
@@ -97,7 +105,7 @@ public class Controll {
         }
     }
 
-    private String getActiveUser() throws IOException {
+    public String getActiveUser() throws IOException {
         String activeUser = "";
         try {
             BufferedReader br
@@ -111,8 +119,22 @@ public class Controll {
         return activeUser;
     }
 
+    public void backLogin(ActionEvent event)throws IOException{
+        pageSCene(LOGIN,event);
+    }
 
+    public void createNote(ActionEvent event)throws IOException{
+        pageSCene(NOTE, event);
+    }
 
+    public void pageManage(ActionEvent event)throws IOException{
+        pageSCene(MANAGE,event);
+    }
+    
+    public void editNote(ActionEvent event)throws IOException{
+    pageSCene("Edit.fxml",event);
+
+    }
 
 
 

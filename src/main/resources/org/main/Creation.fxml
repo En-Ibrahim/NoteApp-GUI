@@ -7,25 +7,27 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="477.0" prefWidth="502.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.main.Controll">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="422.0" prefWidth="452.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.main.Controll">
    <children>
-      <Button fx:id="createButton" layoutX="219.0" layoutY="389.0" mnemonicParsing="false" onAction="#creatUser" prefHeight="41.0" prefWidth="84.0" text="Create" />
-      <Label layoutX="155.0" layoutY="80.0" text="Create User">
+      <Button fx:id="createButton" layoutX="184.0" layoutY="309.0" mnemonicParsing="false" onAction="#creatUser" prefHeight="41.0" prefWidth="84.0" text="Create" />
+      <Label alignment="CENTER" layoutX="94.0" layoutY="35.0" prefHeight="30.0" prefWidth="251.0" text="Create User">
          <font>
-            <Font size="35.0" />
+            <Font size="32.0" />
          </font>
       </Label>
-      <Label layoutX="61.0" layoutY="184.0" text="User Name ">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
-      <Label layoutX="71.0" layoutY="298.0" text="Password">
+      <Label layoutX="71.0" layoutY="117.0" text="User Name ">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="userName" layoutX="179.0" layoutY="183.0" />
-      <PasswordField fx:id="password" layoutX="179.0" layoutY="298.0" />
+      <Label layoutX="71.0" layoutY="219.0" text="Password">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <TextField fx:id="userName" layoutX="181.0" layoutY="116.0" />
+      
+      <PasswordField fx:id="password" layoutX="179.0" layoutY="219.0" />
+      <Button layoutX="48.0" layoutY="365.0" mnemonicParsing="false" onAction="#backLogin" text="Back" />
    </children>
 </AnchorPane>

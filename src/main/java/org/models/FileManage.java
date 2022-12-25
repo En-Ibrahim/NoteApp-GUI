@@ -2,9 +2,7 @@ package org.models;
 
 import org.main.Controll;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.Scanner;
 
 public class FileManage  {
@@ -31,6 +29,8 @@ public class FileManage  {
     }
 
     public void createUser(){
+        getUser().getName();
+        getUser().getPassword();
         try{
             File path= new File("Notes");
             path.mkdirs();
@@ -57,7 +57,7 @@ public class FileManage  {
             File path= new File("Notes\\" + activeUser +"\\Note");
             path.mkdirs();
 
-            File file = new File("Notes\\" + activeUser +"\\Note\\"+ getNote().getTittle() +".txt");
+            File file = new File("Notes\\" + activeUser +"\\Note\\"+ getNote().getTittle()+".txt" );
 
             FileWriter writer = new FileWriter(file);
 
@@ -104,4 +104,29 @@ public class FileManage  {
         }
         return false;
     }
+
+    //UpDates
+
+    public String[] getAllNotes(){
+        File directoryPath = new File("Notes\\"+getUser().getName()+"\\Note");
+
+        String contents[] = directoryPath.list();
+        return contents;
+    }
+
+    public String EditNote(String note){
+        String st = "";
+        try {
+            File file = new File("Notes\\" + getUser().getName() +"\\Note\\"+note);
+            BufferedReader br= new BufferedReader(new FileReader(file));
+            while ((st = br.readLine()) != null) {
+                System.out.println(st);
+            }
+        }catch (IOException e){
+            System.out.println(e);
+        }
+        return st;
+    }
+
+
 }

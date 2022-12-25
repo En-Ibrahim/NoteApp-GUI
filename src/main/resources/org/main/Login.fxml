@@ -13,9 +13,9 @@
       <PasswordField fx:id="textPassword" layoutX="166.0" layoutY="233.0" />
 
       <Button fx:id="login" layoutX="227.0" layoutY="308.0" mnemonicParsing="false" onAction="#login" text="Login" />
-      <Button fx:id="CreateUser" layoutX="194.0" layoutY="395.0" mnemonicParsing="false" onAction="#creator" text="Create  Account" />
+      <Button fx:id="CreateUser" layoutX="194.0" layoutY="395.0" mnemonicParsing="false" onAction="#creator" text="Create  account" />
 
-      <Label layoutX="47.0" layoutY="139.0" text="User Name">
+      <Label layoutX="72.0" layoutY="139.0" text="Email">
          <font>
             <Font size="20.0" />
          </font>
@@ -26,5 +26,10 @@
          </font>
       </Label>
       <Label layoutX="137.0" layoutY="358.0" text="If you don't have account create one ." />
+      <Label fx:id="myLabel" layoutX="120.0" layoutY="70.0"  prefHeight="30.0" prefWidth="300.0" text="Enter Email And Passord">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

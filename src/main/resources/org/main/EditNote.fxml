@@ -8,9 +8,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="477.0" prefWidth="584.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.main.Controll">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="477.0" prefWidth="584.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.main.Edit">
    <children>
-      <TextField fx:id="textTittle" layoutX="247.0" layoutY="36.0" />
+
       <TextArea fx:id="textArea" layoutX="80.0" layoutY="93.0" prefHeight="292.0" prefWidth="425.0" scrollTop="5.0" AnchorPane.bottomAnchor="92.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="79.0" AnchorPane.topAnchor="93.0">
          <font>
             <Font name="System Bold" size="15.0" />
@@ -24,12 +24,12 @@
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </Button>
-      <Label layoutX="170.0" layoutY="31.0" text="Note : ">
+      <Label fx:id="titleLabel" alignment="CENTER" layoutX="170.0" layoutY="31.0" prefHeight="36.0" prefWidth="250.0" text="Edit Note">
          <font>
             <Font size="25.0" />
          </font>
       </Label>
-      <Button layoutX="14.0" layoutY="411.0" mnemonicParsing="false" onAction="#pageManage" text="back" />
+      <Button layoutX="14.0" layoutY="411.0" mnemonicParsing="false" onAction="#backManage" text="back" />
 
    </children>
 </AnchorPane>
