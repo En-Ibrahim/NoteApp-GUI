@@ -27,8 +27,7 @@ public class Controll {
     //user
     @FXML
     private TextField userName;
-    @FXML
-    private TextField email;
+
     @FXML
     private TextField password;
     //note

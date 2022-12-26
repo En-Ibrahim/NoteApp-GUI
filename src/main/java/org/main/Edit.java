@@ -31,7 +31,7 @@ public class Edit implements Initializable {
     @FXML
     private TextField textTittle= new TextField();
     @FXML
-    private TextArea textArea;
+    private TextArea textArea= new TextArea();
 
     @FXML
     private Label titleLabel;
@@ -64,11 +64,14 @@ public class Edit implements Initializable {
     }
 
     public void backManage(ActionEvent event){
-    pageSCene("Manage.fxml",event);
+        pageSCene("Manage.fxml",event);
     }
     public void editNote(ActionEvent event){
-        if(getActiveNote()!=null) {
+        if(!myLabel.getText().equals("Select Note")) {
             pageSCene("EditNote.fxml", event);
+        }
+        else{
+            pageSCene("Edit.fxml", event);
         }
 
     }
@@ -143,7 +146,6 @@ public class Edit implements Initializable {
     //move between Scene
     public void pageSCene(String pageScene, ActionEvent event)  {
         try{
-
             Pane loader =  FXMLLoader.load(getClass().getResource(pageScene));
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             scene = new Scene(loader);
@@ -175,10 +177,11 @@ public class Edit implements Initializable {
     public String getNote(){
         String st = "";
         try {
-            File file = new File("Notes\\" + getActiveUser() +"\\Note\\"+manage.getNote().getTittle()+".txt");
+            File file = new File("Notes\\" + getActiveUser() +"\\Note\\"+getActiveNote()+".txt");
             BufferedReader br= new BufferedReader(new FileReader(file));
             while ((st = br.readLine()) != null) {
                 System.out.println(st);
+//               textArea.setText(st);
             }
         }catch (IOException e){
             System.out.println(e);
