@@ -7,15 +7,23 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="497.0" prefWidth="518.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.main.Controll">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="497.0" prefWidth="418.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.main.Controll">
    <children>
       <TextField fx:id="textUser" layoutX="166.0" layoutY="138.0" />
       <PasswordField fx:id="textPassword" layoutX="166.0" layoutY="233.0" />
 
-      <Button fx:id="login" layoutX="227.0" layoutY="308.0" mnemonicParsing="false" onAction="#login" text="Login" />
-      <Button fx:id="CreateUser" layoutX="194.0" layoutY="395.0" mnemonicParsing="false" onAction="#creator" text="Create  account" />
+      <Button fx:id="login" layoutX="175.0" layoutY="308.0" mnemonicParsing="false" onAction="#buttonLogin" text="Login">
+         <font>
+         <Font size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="CreateUser" layoutX="130.0" layoutY="395.0" mnemonicParsing="false" onAction="#buttonCreatAccount" text="Create  account">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
 
-      <Label layoutX="72.0" layoutY="139.0" text="Email">
+      <Label layoutX="54.0" layoutY="133.0" text="User Name">
          <font>
             <Font size="20.0" />
          </font>
@@ -25,8 +33,8 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Label layoutX="137.0" layoutY="358.0" text="If you don't have account create one ." />
-      <Label fx:id="myLabel" layoutX="120.0" layoutY="70.0"  prefHeight="30.0" prefWidth="300.0" text="Enter Email And Passord">
+      <Label layoutX="120.0" layoutY="358.0" text="If you don't have account create one ." />
+      <Label fx:id="myLabel" layoutX="120.0" layoutY="650"  prefHeight="30.0" prefWidth="300.0" text="Enter Email And Passord">
          <font>
             <Font size="20.0" />
          </font>

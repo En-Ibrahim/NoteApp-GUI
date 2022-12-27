@@ -9,10 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import org.models.FileManage;
@@ -34,6 +31,9 @@ public class Edit implements Initializable {
     private TextArea textArea= new TextArea();
 
     @FXML
+    private Button bEdit= new Button();
+
+    @FXML
     private Label titleLabel;
 
     private Parent root;
@@ -46,14 +46,14 @@ public class Edit implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        myListView.getItems().addAll(getAllNotes());
+        myListView.getItems().addAll(manage.getAllNotes());
         myListView.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
                 currentNote = myListView.getSelectionModel().getSelectedItem();
                 myLabel.setText(currentNote);
                 try {
-                    activeNote(currentNote) ;
+                    manage.activeNote(currentNote) ;
                 } catch (IOException e) {
                     System.out.println(e);
                 }
@@ -63,85 +63,29 @@ public class Edit implements Initializable {
 
     }
 
-    public void backManage(ActionEvent event){
-        pageSCene("Manage.fxml",event);
+    public void buttonBackManage(ActionEvent event){
+        pageSCene("ManageNote.fxml",event);
     }
-    public void editNote(ActionEvent event){
+    public void buttonEditNote(ActionEvent event){
         if(!myLabel.getText().equals("Select Note")) {
             pageSCene("EditNote.fxml", event);
         }
         else{
             pageSCene("Edit.fxml", event);
         }
-
     }
-
-    public void save(ActionEvent event){
-        textTittle.setText(getActiveNote());
+    public void buttonSaveEditNote(ActionEvent event){
+        textTittle.setText(manage.getActiveNote());
         manage.setNote(textTittle.getText(),textArea.getText());
-        EditNotes(getActiveUser());
+        manage.EditNotes(manage.getActiveUser());
         pageSCene("Note.fxml",event);
     }
 
-
-
-    //---------User
-    public String getActiveUser()  {
-        String activeUser = "";
-        try {
-            BufferedReader br
-                    = new BufferedReader(new FileReader("Notes\\active.txt"));
-            while ((activeUser = br.readLine().substring(14)) != null) {
-                System.out.println(activeUser);
-            }
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-        return activeUser;
+    public void buttonDelete(ActionEvent event){
+        manage.deleteNote(manage.getActiveNote());
+        pageSCene("Edit.fxml",event);
     }
 
-    public String[] getAllNotes(){
-        File directoryPath = new File("Notes\\"+getActiveUser()+"\\Note");
-
-        String contents[] = directoryPath.list();
-        return contents;
-    }
-
-    //--- Note active
-    public void activeNote(String note) throws IOException {
-        try {
-
-            File path = new File("Notes\\"+getActiveUser()+"\\activeNote.txt");
-
-            FileWriter writer = new FileWriter(path);
-            String details = "Active Note : " + getTitl(note);
-            writer.write(details);
-            writer.close();
-
-        } catch (IOException e) {
-            System.out.println(e);
-        }
-    }
-    public String getActiveNote()  {
-        String activeUser = "";
-        try {
-            BufferedReader br= new BufferedReader(new FileReader("Notes\\"+getActiveUser()+"\\activeNote.txt"));
-            while ((activeUser = br.readLine().substring(14)) != null ) {
-                System.out.println(activeUser);
-            }
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-        return activeUser;
-    }
-    public static String getTitl(String title){
-        String thename="";
-        for(int i=0;i<title.indexOf(".txt");i++) {
-            char c = title.charAt(i);
-            thename += c;
-        }
-        return thename;
-    }
 
     //move between Scene
     public void pageSCene(String pageScene, ActionEvent event)  {
@@ -156,39 +100,6 @@ public class Edit implements Initializable {
             e.printStackTrace();
         }
     }
-    public void EditNotes(String activeUser) {
-
-        try {
-            File path= new File("Notes\\" + activeUser +"\\Note");
-            path.mkdirs();
-
-            File file = new File("Notes\\" + activeUser +"\\Note\\"+ manage.getNote().getTittle()+".txt");
-
-            FileWriter writer = new FileWriter(file);
-
-            String setDetails = "Tittle : " + manage.getNote().getTittle() + "\nBody \n" + manage.getNote().getBody();
-            writer.write(setDetails);
-            writer.close();
-        }catch (IOException e){
-            System.out.println(e);
-        }
-    }
-
-    public String getNote(){
-        String st = "";
-        try {
-            File file = new File("Notes\\" + getActiveUser() +"\\Note\\"+getActiveNote()+".txt");
-            BufferedReader br= new BufferedReader(new FileReader(file));
-            while ((st = br.readLine()) != null) {
-                System.out.println(st);
-//               textArea.setText(st);
-            }
-        }catch (IOException e){
-            System.out.println(e);
-        }
-        return st;
-    }
-
 
 
 }

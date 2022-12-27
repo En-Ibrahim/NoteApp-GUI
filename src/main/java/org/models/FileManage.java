@@ -28,15 +28,18 @@ public class FileManage  {
         return this.note;
     }
 
-    public void createUser(){
-        getUser().getName();
-        getUser().getPassword();
-        try{
-            File path= new File("Notes");
-            path.mkdirs();
 
-            File path1= new File("Notes\\"+getUser().getName());
+    // user
+    public void createUser(){
+        try{
+            File path1= new File("Notes");
             path1.mkdirs();
+
+            File path2= new File("Notes\\"+getUser().getName());
+            path2.mkdirs();
+
+            File path3= new File("Notes\\" + getUser().getName() +"\\Note");
+            path3.mkdirs();
 
             File file= new File("Notes\\"+getUser().getName()+"\\details.txt");
 
@@ -50,25 +53,6 @@ public class FileManage  {
             System.out.println(e);
         }
     }
-
-    public void createNotes(String activeUser) {
-
-        try {
-            File path= new File("Notes\\" + activeUser +"\\Note");
-            path.mkdirs();
-
-            File file = new File("Notes\\" + activeUser +"\\Note\\"+ getNote().getTittle()+".txt" );
-
-            FileWriter writer = new FileWriter(file);
-
-            String setDetails = "Tittle : " + getNote().getTittle() + "\nBody \n" + getNote().getBody();
-            writer.write(setDetails);
-            writer.close();
-        }catch (IOException e){
-            System.out.println(e);
-        }
-    }
-
     public String searchUser(String nameFolder) throws IOException {
         File path = new File("Notes");
         String[] childern = path.list();
@@ -104,20 +88,122 @@ public class FileManage  {
         }
         return false;
     }
+    public void activeUser(String user) throws IOException {
+        try {
+            File path = new File("Notes\\active.txt");
 
-    //UpDates
+            FileWriter writer = new FileWriter(path);
+            String details = "Active User : " + user;
+            writer.write(details);
+            writer.close();
+
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+    }
+
+    public String getActiveUser()  {
+        String activeUser = "";
+        try {
+            BufferedReader br
+                    = new BufferedReader(new FileReader("Notes\\active.txt"));
+            while ((activeUser = br.readLine().substring(14)) != null) {
+                System.out.println(activeUser);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return activeUser;
+    }
+
+
+    //Note
+    public void createNotes(String activeUser) {
+
+        try {
+            File file = new File("Notes\\" + activeUser +"\\Note\\"+ getNote().getTittle()+".txt" );
+            FileWriter writer = new FileWriter(file);
+
+            String setDetails =  getNote().getBody();
+            writer.write(setDetails);
+            writer.close();
+        }catch (IOException e){
+            System.out.println(e);
+        }
+    }
+
+    public void deleteNote(String activeNote){
+        try{
+            File path= new File("Notes\\"+getActiveUser()+"\\Note\\"+activeNote+".txt");
+            path.delete();
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
 
     public String[] getAllNotes(){
-        File directoryPath = new File("Notes\\"+getUser().getName()+"\\Note");
+        File directoryPath = new File("Notes\\"+getActiveUser()+"\\Note");
 
-        String contents[] = directoryPath.list();
+        String[] contents = directoryPath.list();
         return contents;
     }
 
-    public String EditNote(String note){
+    public void activeNote(String note) throws IOException {
+        try {
+            File path = new File("Notes\\"+getActiveUser()+"\\activeNote.txt");
+
+            FileWriter writer = new FileWriter(path);
+            String details = "Active Note : " + getTitl(note);
+            writer.write(details);
+            writer.close();
+
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+    }
+    public String getActiveNote()  {
+        String activeUser = "";
+        try {
+            BufferedReader br= new BufferedReader(new FileReader("Notes\\"+getActiveUser()+"\\activeNote.txt"));
+            while ((activeUser = br.readLine().substring(14)) != null ) {
+                System.out.println(activeUser);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return activeUser;
+    }
+    public  String getTitl(String title){
+        String thename="";
+        for(int i=0;i<title.indexOf(".txt");i++) {
+            char c = title.charAt(i);
+            thename += c;
+        }
+        return thename;
+    }
+    public void EditNotes(String activeUser) {
+
+        try {
+
+
+            File file = new File("Notes\\" + activeUser +"\\Note\\"+ getNote().getTittle()+".txt");
+
+            FileWriter writer = new FileWriter(file);
+
+            String setDetails =  getNote().getBody();
+            writer.write(setDetails);
+            writer.close();
+
+
+        }catch (IOException e){
+            System.out.println(e);
+        }
+    }
+
+    public String getNoteToEdit(){
         String st = "";
         try {
-            File file = new File("Notes\\" + getUser().getName() +"\\Note\\"+note);
+            File file = new File("Notes\\" + getActiveUser() +"\\Note\\"+getActiveNote()+".txt");
             BufferedReader br= new BufferedReader(new FileReader(file));
             while ((st = br.readLine()) != null) {
                 System.out.println(st);
@@ -127,6 +213,8 @@ public class FileManage  {
         }
         return st;
     }
+
+
 
 
 }

@@ -1,3 +1,2 @@
 Name = Ibrahim
-Eamil = null
 Password = ibrahim
