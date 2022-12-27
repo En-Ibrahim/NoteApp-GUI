@@ -1,3 +1,0 @@
-Name = Emad
-Eamil = null
-Password = emad123
